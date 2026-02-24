@@ -1,0 +1,161 @@
+.why-us {
+  padding: 5rem 0;
+  background: #f9fafb;
+}
+
+.why-us-content {
+  display: grid;
+  gap: 4rem;
+  align-items: center;
+}
+
+.why-us-header {
+  margin-bottom: 2rem;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  background: var(--gradient-primary);
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-icon span {
+  color: white;
+  font-size: 1.25rem;
+}
+
+.feature-content {
+  flex: 1;
+}
+
+.feature-title {
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.feature-description {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.why-us-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.why-us-right {
+  position: relative;
+}
+
+.images-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.main-image {
+  grid-column: span 2;
+  aspect-ratio: 4/3;
+  background: var(--gradient-primary-135);
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.small-image {
+  aspect-ratio: 1;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.image-1 {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+}
+
+.image-2 {
+  background: linear-gradient(135deg, #10b981, #3b82f6);
+}
+
+.image-placeholder {
+  color: white;
+  font-size: 3rem;
+}
+
+.small-image .image-placeholder {
+  font-size: 2rem;
+}
+
+.floating-stats {
+  position: absolute;
+  bottom: -1.5rem;
+  left: -1.5rem;
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.stats-content {
+  text-align: center;
+}
+
+.stats-number {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.stats-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.bg-decoration {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  width: 6rem;
+  height: 6rem;
+  background: var(--color-primary-light);
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+@media (min-width: 640px) {
+  .why-us-buttons {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 1024px) {
+  .why-us-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}

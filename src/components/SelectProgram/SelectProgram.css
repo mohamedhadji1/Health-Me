@@ -1,0 +1,352 @@
+/* ── Page Shell ───────────────────────────────────────────── */
+.sp-page {
+  min-height: 100vh;
+  background: #0a0a0a;
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 7rem;
+}
+
+.sp-bg-glow {
+  position: fixed;
+  top: -180px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 400px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.12;
+  pointer-events: none;
+  transition: background 0.6s ease;
+  z-index: 0;
+}
+
+.sp-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1140px;
+  padding: 0 1.5rem;
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.sp-header {
+  padding: 2.5rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.sp-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  letter-spacing: -0.02em;
+}
+.sp-logo-icon {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+.sp-logo-text span { color: #22c55e; }
+
+.sp-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.sp-subtitle {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+/* ── Card Grid ────────────────────────────────────────────── */
+.sp-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 1100px) { .sp-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px)  { .sp-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px)  { .sp-grid { grid-template-columns: 1fr; } }
+
+/* ── Individual Card ──────────────────────────────────────── */
+.sp-card {
+  position: relative;
+  background: #161616;
+  border: 2px solid #2a2a2a;
+  border-radius: 18px;
+  padding: 1.25rem 1.1rem 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  user-select: none;
+}
+.sp-card:hover {
+  border-color: #3a3a3a;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+}
+.sp-card.selected {
+  border-color: var(--prog-color);
+  box-shadow: 0 0 0 1px var(--prog-color), 0 12px 40px rgba(0,0,0,0.5);
+  transform: translateY(-4px);
+}
+
+/* Badge — full-width top strip, not absolute, so it never overlaps the check circle */
+.sp-card-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0.22rem 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+  border-radius: 16px 16px 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Check circle */
+.sp-card-check {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #2a2a2a;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--prog-color);
+  transition: border-color 0.2s, background 0.2s;
+  flex-shrink: 0;
+  z-index: 1;
+}
+/* Push check circle below the badge strip when present */
+.sp-card.has-badge .sp-card-check {
+  top: 1.6rem;
+}
+.sp-card.selected .sp-card-check {
+  border-color: var(--prog-color);
+  background: var(--prog-color);
+  color: #fff;
+}
+
+/* Top row: emoji + name */
+.sp-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+  /* extra top margin only when a badge is present (handled by has-badge class) */
+  margin-top: 0.5rem;
+}
+
+.sp-card.has-badge .sp-card-top {
+  margin-top: 1.4rem; /* push content below the badge strip */
+}
+.sp-card-emoji {
+  font-size: 1.75rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.sp-card-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  line-height: 1.2;
+}
+.sp-card-tagline {
+  font-size: 0.72rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+  line-height: 1.4;
+}
+
+/* Macro pills */
+.sp-macro-row {
+  display: flex;
+  gap: 0.5rem;
+}
+.sp-macro-pill {
+  flex: 1;
+  background: #1e1e1e;
+  border-radius: 8px;
+  padding: 0.4rem 0.5rem;
+  text-align: center;
+}
+.sp-macro-val {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--prog-color);
+  line-height: 1;
+}
+.sp-macro-lbl {
+  font-size: 0.62rem;
+  color: #64748b;
+  margin-top: 2px;
+  display: block;
+}
+
+/* Features list */
+.sp-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+}
+.sp-features li {
+  font-size: 0.75rem;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.sp-feat-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--prog-color);
+  flex-shrink: 0;
+}
+.sp-card.selected .sp-features li {
+  color: #94a3b8;
+}
+
+/* Bottom strip */
+.sp-card-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--prog-gradient);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.sp-card.selected .sp-card-strip,
+.sp-card:hover .sp-card-strip {
+  opacity: 1;
+}
+
+/* ── Confirm Bar (sticky bottom) ──────────────────────────── */
+.sp-confirm-bar {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 3rem);
+  max-width: 680px;
+  background: #161616;
+  border: 1px solid #2a2a2a;
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+
+.sp-confirm-info {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+.sp-confirm-emoji {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+.sp-confirm-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+.sp-confirm-macro {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-top: 2px;
+}
+.sp-confirm-placeholder {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.sp-confirm-btn {
+  padding: 0.7rem 1.75rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  transition: opacity 0.2s, transform 0.15s;
+  flex-shrink: 0;
+  letter-spacing: -0.01em;
+}
+.sp-confirm-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.sp-confirm-btn:not(:disabled):hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+/* Spinner */
+.sp-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: sp-spin 0.7s linear infinite;
+}
+@keyframes sp-spin {
+  to { transform: rotate(360deg); }
+}
